@@ -1,0 +1,285 @@
+code for angry:
+from tkinter import *
+root = Tk()
+root.title(&quot;action movies&quot;)
+root.geometry(&quot;5000x1000&quot;) #Width x Height
+Label(root, text = &#39;Bahubali 2: The Conclusion&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Gabbar Singh&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Savyasachi&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Rarandoi Veduka Chudham&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Mirchi&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Julayi&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Dhruva&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Dammu&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+root.mainloop()
+
+Code for disgust
+from tkinter import *
+root = Tk()
+root.title(&quot;Disgust movies&quot;)
+root.geometry(&quot;5000x1000&quot;) #Width x Height
+Label(root, text = &#39;Atidhi&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Bramosthavam&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Dear Commarade&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Dhada&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Rebal&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Ye Mantram Vesave&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Shock&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Kantri&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+root.mainloop()
+
+Code for Happy
+from tkinter import * #gui
+root = Tk()
+root.title(&quot;comedy movies&quot;)
+root.geometry(&quot;5000x1000&quot;) #Width x Height
+Label(root, text = &#39;Kitakitalu&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Kick&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Rabasa&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Kandireega&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Ramachari&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Race gurram&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Badshah&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Bhale Bhale magadivoy&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+root.mainloop()
+
+Load and process:
+
+import pandas as pd
+import cv2
+import numpy as np
+
+dataset_path = &#39;fer2013/fer2013/fer2013.csv&#39;
+image_size=(48,48)
+def load_fer2013():
+data = pd.read_csv(dataset_path)
+pixels = data[&#39;pixels&#39;].tolist()
+width, height = 48, 48
+faces = []
+for pixel_sequence in pixels:
+face = [int(pixel) for pixel in pixel_sequence.split(&#39; &#39;)]
+face = np.asarray(face).reshape(width, height)
+face = cv2.resize(face.astype(&#39;uint8&#39;),image_size)
+faces.append(face.astype(&#39;float32&#39;))
+faces = np.asarray(faces)
+faces = np.expand_dims(faces, -1)
+emotions = pd.get_dummies(data[&#39;emotion&#39;]).as_matrix()
+return faces, emotions
+def preprocess_input(x, v2=True):
+x = x.astype(&#39;float32&#39;)
+x = x / 255.0
+if v2:
+x = x - 0.5
+x = x * 2.0
+return x
+
+Code for neutral
+from tkinter import *
+root = Tk()
+root.title(&quot;netural movies&quot;)
+root.geometry(&quot;5000x1000&quot;) #Width x Height
+Label(root, text = &#39;Saaho&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Rangasthalam&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Baahubali 2: The Conclusion&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Janatha Garage&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Race Gurram&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Attarintiki Daredi&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Dookudu&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+Label(root, text = &#39;Simha&#39;,
+font =(&#39;Verdana&#39;, 15)).pack(side = TOP, pady = 10)
+root.mainloop()
+
+
+Code for real time video
+from keras.preprocessing.image import img_to_array #present image to array
+import imutils #webcam
+import cv2 #black withe recording
+from keras.models import load_model #loading the model
+import numpy as np #image to arrray comaparitions
+import os #system control
+from cv2 import WINDOW_NORMAL
+import webbrowser #google chrome access
+k=&quot;&quot;
+# parameters for loading data and images
+detection_model_path = &#39;haarcascade_files/haarcascade_frontalface_default.xml&#39; #face box
+emotion_model_path = &#39;models/_mini_XCEPTION.102-0.66.hdf5&#39; #emotions
+# hyper-parameters for bounding boxes shape
+# loading models
+face_detection = cv2.CascadeClassifier(detection_model_path) #face box
+emotion_classifier = load_model(emotion_model_path, compile=False) #emotions
+EMOTIONS = [&quot;angry&quot; ,&quot;disgust&quot;,&quot;scared&quot;, &quot;happy&quot;, &quot;sad&quot;, &quot;surprised&quot;,
+&quot;neutral&quot;]
+#feelings_faces = []
+#for index, emotion in enumerate(EMOTIONS):
+# feelings_faces.append(cv2.imread(&#39;emojis/&#39; + emotion + &#39;.png&#39;, -1))
+# starting video streaming
+cv2.namedWindow(&#39;your_face&#39;) #name of window
+camera = cv2.VideoCapture(0) #camera loding
+while True:
+frame = camera.read()[1] #reading
+#reading the frame
+frame = imutils.resize(frame,width=1280) #size of frame
+gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #balck and white
+faces =
+face_detection.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30,30),flags=cv2.CASCADE_SCAL
+E_IMAGE) #string faces
+canvas = np.zeros((250, 300, 3), dtype=&quot;uint8&quot;) #all assign to zero
+frameClone = frame.copy() #coping the frame
+if len(faces) &gt; 0:
+faces = sorted(faces, reverse=True,
+key=lambda x: (x[2] - x[0]) * (x[3] - x[1]))[0]
+(fX, fY, fW, fH) = faces #sorting of faces
+# Extract the ROI of the face from the grayscale image, resize it to a fixed 28x28 pixels, and then prepare
+# the ROI for classification via the CNN
+roi = gray[fY:fY + fH, fX:fX + fW] #black and white
+roi = cv2.resize(roi, (64, 64))
+roi = roi.astype(&quot;float&quot;) / 255.0
+roi = img_to_array(roi) #array to image array format
+roi = np.expand_dims(roi, axis=0)
+
+preds = emotion_classifier.predict(roi)[0] #checking emotion
+emotion_probability = np.max(preds) #maximum
+label = EMOTIONS[preds.argmax()] #MAXIMUM EMOTION
+k=label
+print(label)
+else: continue
+
+for (i, (emotion, prob)) in enumerate(zip(EMOTIONS, preds)):
+# construct the label text
+text = &quot;{}: {:.2f}%&quot;.format(emotion, prob * 100)
+# draw the label + probability bar on the canvas
+# emoji_face = feelings_faces[np.argmax(preds)]
+
+w = int(prob * 300)
+cv2.rectangle(canvas, (7, (i * 35) + 5),
+(w, (i * 35) + 35), (0, 0, 255), -1)
+cv2.putText(canvas, text, (10, (i * 35) + 23), #face text
+cv2.FONT_HERSHEY_SIMPLEX, 0.45,
+(255, 255, 255), 2)
+cv2.putText(frameClone, label, (fX, fY - 10),
+cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
+cv2.rectangle(frameClone, (fX, fY), (fX + fW, fY + fH),
+(0, 0, 255), 2)
+# for c in range(0, 3):
+# frame[200:320, 10:130, c] = emoji_face[:, :, c] * \
+# (emoji_face[:, :, 3] / 255.0) + frame[200:320,
+# 10:130, c] * (1.0 - emoji_face[:, :, 3] / 255.0)
+
+cv2.imshow(&#39;your_face&#39;, frameClone)
+cv2.imshow(&quot;Probabilities&quot;, canvas) #BOX SECOND
+if cv2.waitKey(1) &amp; 0xFF == ord(&#39;q&#39;):
+if(k==&quot;happy&quot;):
+webbrowser.open(&quot;https://www.imdb.com/list/ls053965442/&quot;) #LINK
+os.startfile(&quot;happy.py&quot;)
+elif(k==&quot;angry&quot;):
+webbrowser.open(&quot;https://m.imdb.com/list/ls027328830/?page=2&quot;)
+os.startfile(&quot;angry.py&quot;)
+elif(k==&quot;sad&quot;):
+webbrowser.open(&quot;https://www.townandcountrymag.com/leisure/arts-and-culture/g26134805/sad-movies-on-
+netflix/&quot;)
+os.startfile(&quot;sad.py&quot;)
+elif(k==&quot;neutral&quot;):
+webbrowser.open(&quot;https://www.imdb.com/list/ls055592025/&quot;)
+os.startfile(&quot;netural.py&quot;)
+elif(k==&quot;scared&quot;):
+webbrowser.open(&quot;https://www.imdb.com/list/ls003174642/&quot;)
+os.startfile(&quot;scared.py&quot;)
+elif(k==&quot;disgust&quot;):
+webbrowser.open(&quot;https://www.imdb.com/list/ls050968693/&quot;)
+os.startfile(&quot;disgust.py&quot;)
+elif(k==&quot;surprised&quot;):
+webbrowser.open(&quot;https://www.imdb.com/list/ls059659170/&quot;)
+os.startfile(&quot;surprised.py&quot;)
+break
+camera.release()
+cv2.destroyAllWindows()
+
+
+
+Train emotion
+&quot;&quot;&quot;
+Description: Train emotion classification model
+&quot;&quot;&quot;
+from keras.callbacks import CSVLogger, ModelCheckpoint, EarlyStopping
+from keras.callbacks import ReduceLROnPlateau
+from keras.preprocessing.image import ImageDataGenerator
+from load_and_process import load_fer2013
+from load_and_process import preprocess_input
+from models.cnn import mini_XCEPTION
+from sklearn.model_selection import train_test_split
+# parameters
+batch_size = 32
+num_epochs = 10000
+input_shape = (48, 48, 1)
+validation_split = .2
+verbose = 1
+num_classes = 7
+patience = 50
+base_path = &#39;models/&#39;
+# data generator
+data_generator = ImageDataGenerator(
+featurewise_center=False,
+featurewise_std_normalization=False,
+rotation_range=10,
+width_shift_range=0.1,
+height_shift_range=0.1,
+zoom_range=.1,
+horizontal_flip=True)
+# model parameters/compilation
+model = mini_XCEPTION(input_shape, num_classes)
+model.compile(optimizer=&#39;adam&#39;, loss=&#39;categorical_crossentropy&#39;,
+metrics=[&#39;accuracy&#39;])
+model.summary()
+
+# callbacks
+log_file_path = base_path + &#39;_emotion_training.log&#39;
+csv_logger = CSVLogger(log_file_path, append=False)
+early_stop = EarlyStopping(&#39;val_loss&#39;, patience=patience)
+reduce_lr = ReduceLROnPlateau(&#39;val_loss&#39;, factor=0.1,
+patience=int(patience/4), verbose=1)
+trained_models_path = base_path + &#39;_mini_XCEPTION&#39;
+model_names = trained_models_path + &#39;.{epoch:02d}-{val_acc:.2f}.hdf5&#39;
+model_checkpoint = ModelCheckpoint(model_names, &#39;val_loss&#39;, verbose=1,
+save_best_only=True)
+callbacks = [model_checkpoint, csv_logger, early_stop, reduce_lr]
+# loading dataset
+faces, emotions = load_fer2013()
+faces = preprocess_input(faces)
+num_samples, num_classes = emotions.shape
+xtrain, xtest,ytrain,ytest = train_test_split(faces, emotions,test_size=0.2,shuffle=True)
+model.fit_generator(data_generator.flow(xtrain, ytrain,
+batch_size),
+steps_per_epoch=len(xtrain) / batch_size,
+epochs=num_epochs, verbose=1, callbacks=callbacks,
+validation_data=(xtest,ytest))
